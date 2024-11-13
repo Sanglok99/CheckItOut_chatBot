@@ -1,7 +1,7 @@
 # 단어 사전 파일 생성 코드입니다.
 # 챗봇에 사용하는 사전 파일
 
-from utils.Preprocess import Preprocess
+from utils.firstPreprocess import Preprocess
 from tensorflow.keras import preprocessing
 import pickle
 import pandas as pd
