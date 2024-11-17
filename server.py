@@ -31,8 +31,8 @@ except: print("임베딩 pt 파일 갱신 및 로드 실패..")
 async def handler(websocket, path):
     async for message in websocket:
         ### message의 score 구해야 함. "안녕하세요", "~~~ 책 추천해줘" 와 같은 말과 유사도 비교하여 0.6 이하라면 "죄송합니다. 아직 준비되지 않은 답변입니다." 출력
-        f = FindAnswer(message)
-        selected_qes, score, answer, query_intent = f.search(message)
+        f = FindAnswer(df=df, embedding_data=embedding_data ,preprocess=p)
+        selected_qes, score, answer = f.search(message)
         if score < 0.6: 
             response = "죄송합니다. 아직 준비되지 않은 답변입니다."
         else:

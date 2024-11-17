@@ -29,7 +29,7 @@ except: print("임베딩 pt 파일 갱신 및 로드 실패..")
 
 def main():
     message = "우리나라의 역사에 대한 책을 추천해줘"
-    f = FindAnswer(message)
+    f = FindAnswer(df=df, embedding_data=embedding_data ,preprocess=p)
     selected_qes, score, answer = f.search(message)
 
     if score < 0.6: 
