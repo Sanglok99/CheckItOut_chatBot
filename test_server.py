@@ -37,7 +37,7 @@ def main():
 
         # 입력 문자열 정리
         try:
-            message = message.encode("utf-8").decode("utf-8")  # UTF-8로 변환 가능한지 확인
+            test_message = test_message.encode("utf-8").decode("utf-8")  # UTF-8로 변환 가능한지 확인
         except UnicodeEncodeError as e:
             print(f"입력 문자열에 유효하지 않은 문자가 포함되어 있습니다: {e}")
             continue
