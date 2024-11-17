@@ -1,3 +1,5 @@
+# 클라이언트 연결 없이 챗봇 작동 확인하는 테스트 파일
+
 import asyncio
 import websockets
 import pandas as pd
@@ -26,3 +28,19 @@ try:
     embedding_data = torch.load('./train_tools/qna/embedding_data.pt')
     print("임베딩 pt 파일 갱신 및 로드 완료..")
 except: print("임베딩 pt 파일 갱신 및 로드 실패..")
+
+def main():
+    message = "우리나라의 역사에 대한 책을 추천해줘"
+    f = FindAnswer(message)
+    selected_qes, score, answer = f.search(message)
+
+    if score < 0.6: 
+            response = "죄송합니다. 아직 준비되지 않은 답변입니다."
+    else:
+        print(selected_qes) ## 결과 출력 시 출력이 어떤 데이터에 기초했는지 확인하는 용도
+        response = answer
+
+    print(response)
+
+if __name__ == '__main__':
+    main()

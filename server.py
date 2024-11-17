@@ -37,7 +37,6 @@ async def handler(websocket, path):
             response = "죄송합니다. 아직 준비되지 않은 답변입니다."
         else:
             print(selected_qes) ## 결과 출력 시 출력이 어떤 데이터에 기초했는지 확인하는 용도
-            print(query_intent)
             response = answer
 
         await websocket.send(response)
