@@ -28,17 +28,23 @@ try:
 except: print("임베딩 pt 파일 갱신 및 로드 실패..")
 
 def main():
-    message = "우리나라의 역사에 대한 책을 추천해줘"
-    f = FindAnswer(df=df, embedding_data=embedding_data ,preprocess=p)
-    selected_qes, score, answer = f.search(message)
+    while True:
+    # 사용자 입력 받기
+        test_message = input("\n챗봇에게 질문을 입력하세요 (종료하려면 'exit' 입력): ").strip()
+        if test_message.lower() == 'exit':
+            print("챗봇 테스트를 종료합니다.")
+            break
 
-    if score < 0.6: 
-            response = "죄송합니다. 아직 준비되지 않은 답변입니다."
-    else:
-        print(selected_qes) ## 결과 출력 시 출력이 어떤 데이터에 기초했는지 확인하는 용도
-        response = answer
+        f = FindAnswer(df=df, embedding_data=embedding_data ,preprocess=p)
+        selected_qes, score, answer = f.search(test_message)
 
-    print(response)
+        if score < 0.6: 
+                response = "죄송합니다. 아직 준비되지 않은 답변입니다."
+        else:
+            print(f"관련 질문: {selected_qes}")  # 디버깅 및 확인용(출력이 어떤 데이터에 기초했는지 확인)
+            response = answer
+
+        print(f"챗봇 응답: {response}")
 
 if __name__ == '__main__':
     main()
