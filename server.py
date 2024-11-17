@@ -15,7 +15,7 @@ except: print("텍스트 전처리기 로드 실패..")
 
 #엑셀 파일 로드
 try:
-    df = pd.read_excel('train_tools/qna/train_data.xlsx')
+    df = pd.read_csv('train_tools/qna/question_with_labels_100.csv')
     print("엑셀 파일 로드 완료..")
 except: print("엑셀 파일 로드 실패..")
 
@@ -31,7 +31,7 @@ except: print("임베딩 pt 파일 갱신 및 로드 실패..")
 async def handler(websocket, path):
     async for message in websocket:
         ### message의 score 구해야 함. "안녕하세요", "~~~ 책 추천해줘" 와 같은 말과 유사도 비교하여 0.6 이하라면 "죄송합니다. 아직 준비되지 않은 답변입니다." 출력
-        f = FindAnswer
+        f = FindAnswer(message)
         selected_qes, score, answer, query_intent = f.search(message)
         if score < 0.6: 
             response = "죄송합니다. 아직 준비되지 않은 답변입니다."
