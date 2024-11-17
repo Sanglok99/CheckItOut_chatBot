@@ -48,4 +48,4 @@ class FindAnswer:
         # 답변
         answer = self.df['답변(Answer)'][best_sim_idx]
 
-        return selected_qes ,score, answer
+        return selected_qes, score, answer
