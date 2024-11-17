@@ -11,7 +11,7 @@ from train_tools.qna.create_embedding_data import create_embedding_data
 # 전처리 객체 생성
 try:
     p = Preprocess(word2index_dic='../train_tools/dict/chatbot_dict.bin',
-                   userdic='../utils/user_dic.tsv')
+                   userdic=None)
     print("텍스트 전처리기 로드 완료..")
 except: print("텍스트 전처리기 로드 실패..")
 
