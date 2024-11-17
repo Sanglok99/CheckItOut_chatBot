@@ -29,11 +29,18 @@ except: print("임베딩 pt 파일 갱신 및 로드 실패..")
 
 def main():
     while True:
-    # 사용자 입력 받기
+        # 사용자 입력 받기
         test_message = input("\n챗봇에게 질문을 입력하세요 (종료하려면 'exit' 입력): ").strip()
         if test_message.lower() == 'exit':
             print("챗봇 테스트를 종료합니다.")
             break
+
+        # 입력 문자열 정리
+        try:
+            message = message.encode("utf-8").decode("utf-8")  # UTF-8로 변환 가능한지 확인
+        except UnicodeEncodeError as e:
+            print(f"입력 문자열에 유효하지 않은 문자가 포함되어 있습니다: {e}")
+            continue
 
         f = FindAnswer(df=df, embedding_data=embedding_data ,preprocess=p)
         selected_qes, score, answer = f.search(test_message)
