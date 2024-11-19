@@ -1,7 +1,7 @@
 import asyncio
 import websockets
 
-async def handler(websocket, path):
+async def handler(websocket):
     async for message in websocket:
         if message == "안녕하세요.":
             response = "반갑습니다."

@@ -9,7 +9,7 @@ from train_tools.qna.create_embedding_data import create_embedding_data
 # 전처리 객체 생성
 try:
     p = Preprocess(word2index_dic='./train_tools/dict/chatbot_dict.bin',
-                   userdic='./utils/user_dic.tsv')
+                   userdic=None)
     print("텍스트 전처리기 로드 완료..")
 except: print("텍스트 전처리기 로드 실패..")
 
@@ -28,7 +28,7 @@ try:
 except: print("임베딩 pt 파일 갱신 및 로드 실패..")
 
 
-async def handler(websocket, path):
+async def handler(websocket):
     async for message in websocket:
         ### message의 score 구해야 함. "안녕하세요", "~~~ 책 추천해줘" 와 같은 말과 유사도 비교하여 0.6 이하라면 "죄송합니다. 아직 준비되지 않은 답변입니다." 출력
         f = FindAnswer(df=df, embedding_data=embedding_data ,preprocess=p)
