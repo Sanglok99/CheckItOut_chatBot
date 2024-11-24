@@ -15,7 +15,7 @@ except: print("텍스트 전처리기 로드 실패..")
 
 #엑셀 파일 로드
 try:
-    df = pd.read_csv('train_tools/qna/question_with_labels_100.csv')
+    df = pd.read_csv('train_tools/qna/verified_book_recommendations.csv')
     print("엑셀 파일 로드 완료..")
 except: print("엑셀 파일 로드 실패..")
 
