@@ -36,7 +36,6 @@ class FindAnswer:
         cos_sim = util.cos_sim(query_tensor, self.embedding_data)
         best_sim_idx = int(np.argmax(cos_sim))
         selected_qes = self.df['질문(Query)'][best_sim_idx]
-        # query_intent = self.df['의도(Intent)'][best_sim_idx] ## 의도: 미리 구축한 데이터에만 있는 속성 ### 일단 비활성화 - 데이터 변경하면 속성 바꿀 수 있음!
 
         
         # 선택된 질문 문장 인코딩
