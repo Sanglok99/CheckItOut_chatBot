@@ -44,9 +44,12 @@ async def handler(websocket):
     ping_task = asyncio.create_task(send_ping(websocket))  # Ping 작업 실행
     try:
         async for message in websocket:
+            # 'pong' 메시지 필터링
             if message == 'Pong':
                 print("Pong 받음")
-            ### message의 score 구해야 함. "안녕하세요", "~~~ 책 추천해줘" 와 같은 말과 유사도 비교하여 0.6 이하라면 "죄송합니다. 아직 준비되지 않은 답변입니다." 출력
+                continue # 'pong' 메시지는 무시하고 다음 메시지를 기다림
+
+            # 여기서부터는 일반 메시지 처리
             f = FindAnswer(df=df, embedding_data=embedding_data ,preprocess=p)
             selected_qes, score, answer = f.search(message)
             if score < 0.5: ### 유사도 0.5로 수정!!! ###
