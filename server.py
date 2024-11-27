@@ -42,7 +42,12 @@ async def handler(websocket):
         await websocket.send(response)
 
 async def main():
-    async with websockets.serve(handler, "0.0.0.0", 8765):
+    async with websockets.serve(handler, 
+                                "0.0.0.0", 
+                                8765, 
+                                ping_interval=30,  # Ping 메시지 간격 (초)
+                                ping_timeout=60    # Ping 응답 대기 시간 (초)
+    ):
         print("서버가 ws://localhost:8765 에서 시작되었습니다.")
         await asyncio.Future()  # 서버가 계속 실행되도록 유지
 

@@ -3,7 +3,7 @@ import websockets
 
 # WebSocket 클라이언트 함수
 async def test():
-    ws_app = await websockets.connect("ws://aws_instance_public_ip:8765", ping_interval=None)
+    ws_app = await websockets.connect("ws://3.37.71.232:8765", ping_interval=None)
     while True:
         test_message = input("test message 입력(exit 입력 시 종료):")
 
