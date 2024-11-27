@@ -32,7 +32,7 @@ except: print("임베딩 pt 파일 갱신 및 로드 실패..")
 async def send_ping(websocket):
     try:
         while True:
-            await websocket.send("ping")  # 텍스트 기반 ping 전송
+            await websocket.send("Ping")  # 텍스트 기반 ping 전송
             print("Ping 전송")
             await asyncio.sleep(30)  # 30초마다 Ping 전송
     except websockets.ConnectionClosed:
@@ -44,8 +44,8 @@ async def handler(websocket):
     ping_task = asyncio.create_task(send_ping(websocket))  # Ping 작업 실행
     try:
         async for message in websocket:
-            if message == 'pong':
-                print()
+            if message == 'Pong':
+                print("Pong 받음")
             ### message의 score 구해야 함. "안녕하세요", "~~~ 책 추천해줘" 와 같은 말과 유사도 비교하여 0.6 이하라면 "죄송합니다. 아직 준비되지 않은 답변입니다." 출력
             f = FindAnswer(df=df, embedding_data=embedding_data ,preprocess=p)
             selected_qes, score, answer = f.search(message)
